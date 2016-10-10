@@ -13,7 +13,7 @@ GIT
 PATH
   remote: .
   specs:
-    resque-web (0.0.8)
+    resque-web (0.0.8.readonly)
       coffee-rails
       jquery-rails
       resque
@@ -416,4 +416,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
