@@ -1,8 +1,8 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 gemspec
 gem 'rails', '~> 4.0.3'
-gem 'resque', :git => 'https://github.com/resque/resque.git', :branch => "1-x-stable"
+gem 'resque', '1.25.2'
 
 gem 'sqlite3', :platforms => :ruby
 gem 'activerecord-jdbcsqlite3-adapter', :platforms => :jruby

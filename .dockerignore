@@ -1,0 +1,9 @@
+.git*
+
+test/*
+!test/dummy
+coverage
+.idea
+.bundle
+pkg
+vendor
