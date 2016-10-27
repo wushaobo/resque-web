@@ -13,7 +13,7 @@ COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 COPY . /opt/apps/resque-web/
 WORKDIR /opt/apps/resque-web/
 
-RUN gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/ && gem install bundler && bundle install
+RUN gem install bundler && bundle install
 RUN bundle exec rake app:assets:precompile RAILS_ENV=production
 
 WORKDIR /opt/apps/resque-web/test/dummy
