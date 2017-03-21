@@ -10,3 +10,4 @@ apt-get update
 
 # Install Passenger + Nginx
 apt-get install -y nginx-extras passenger
+apt-get clean

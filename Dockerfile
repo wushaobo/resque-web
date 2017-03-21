@@ -1,20 +1,16 @@
 FROM ruby:2.1
 
 COPY ./docker/cn.list /etc/apt/sources.list
-RUN apt-get update -q && apt-get install -y build-essential curl telnet vim nodejs
+RUN rm -rf /etc/apt/sources.list.d/* && apt-get update -q && apt-get install -y curl telnet vim && apt-get clean
 
 COPY ./docker/install_passenger.sh /tmp/install_passenger.sh
 RUN /tmp/install_passenger.sh
-RUN apt-get clean
 
-COPY ./docker/resque_web /etc/nginx/sites-enabled/resque_web
+COPY ./docker/ngx_resque_web /etc/nginx/sites-enabled/ngx_resque_web
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
-COPY . /opt/apps/resque-web/
-WORKDIR /opt/apps/resque-web/
-
-RUN gem install bundler && bundle install
-RUN bundle exec rake app:assets:precompile RAILS_ENV=production
+COPY ./test/dummy /opt/apps/resque-web/test/dummy
+COPY ./vendor /opt/apps/resque-web/vendor
 
 WORKDIR /opt/apps/resque-web/test/dummy
 EXPOSE 80
