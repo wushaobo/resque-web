@@ -9,6 +9,11 @@ RUN /tmp/install_passenger.sh
 COPY ./docker/ngx_resque_web /etc/nginx/sites-enabled/ngx_resque_web
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
+RUN export RAILS_ENV=production && \
+	bundle install && \
+	bundle install --deployment && \
+	bundle exec rake app:assets:precompile 
+
 COPY ./test/dummy /opt/apps/resque-web/test/dummy
 COPY ./vendor /opt/apps/resque-web/vendor
 
