@@ -9,14 +9,14 @@ RUN /tmp/install_passenger.sh
 COPY ./docker/ngx_resque_web /etc/nginx/sites-enabled/ngx_resque_web
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
-COPY ./* /opt/apps/resque-web/
+EXPOSE 80
+
+COPY . /opt/apps/resque-web
 WORKDIR /opt/apps/resque-web
 RUN export RAILS_ENV=production && \
+    bundle config mirror.https://rubygems.org https://gems.ruby-china.org && \
 	bundle install && \
 	bundle install --deployment && \
-	bundle exec rake app:assets:precompile 
-
-WORKDIR /opt/apps/resque-web/test/dummy
-EXPOSE 80
+	bundle exec rake app:assets:precompile
 
 CMD passenger start --min-instance 4 --port 80
