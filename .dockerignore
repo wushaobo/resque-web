@@ -5,5 +5,10 @@ test/*
 coverage
 .idea
 .bundle
+.env
 pkg
+*.md
 
+docker-compose.yml
+Dockerfile
+.dockerignore

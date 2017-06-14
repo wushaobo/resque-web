@@ -7,7 +7,7 @@ services:
     environment:
       - RESQUE_WEB_HTTP_BASIC_AUTH_USER=tronclass
       - RESQUE_WEB_HTTP_BASIC_AUTH_PASSWORD=wg
-      - RAILS_RESQUE_REDIS=192.168.99.1:6379
+      - RAILS_RESQUE_REDIS=10.66.66.66:6379:1
     command: passenger start --min-instance 4 --port 80
     ports:
-        - "3000:80"
+        - "30000:80"
